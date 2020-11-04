@@ -26,7 +26,7 @@ const schema = new mongoose.Schema({
 });
 
 schema.pre("save", async function (this: IUserDocument) {
-  console.log(await bcrypt.hash(this.password, 10));
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
 export const User = mongoose.model<IUserDocument>("User", schema);
