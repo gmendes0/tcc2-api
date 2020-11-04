@@ -4,10 +4,10 @@ import bcrypt from "bcrypt";
 export interface IUser {
   name: string;
   email: string;
-  password: string;
+  password?: string;
 }
 
-interface IUserDocument extends IUser, mongoose.Document {}
+export interface IUserDocument extends IUser, mongoose.Document {}
 
 const schema = new mongoose.Schema({
   name: {
@@ -22,6 +22,7 @@ const schema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    select: false,
   },
 });
 
